@@ -1,8 +1,61 @@
-#
-# application.yml — главный конфигурационный файл Spring Boot.
+# application.yml — главный конфигурационный файл Spring Boot
 
-Что нужно сделать:
-  - Указать настройки подключения к базе данных.
-  - Указать порт приложения.
-  - Настроить параметры безопасности и JWT.
-  - Включить Swagger UI.
+spring:
+  application:
+    name: bank-rest
+
+  # 1. Настройки БД
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bank_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  # 2. Настройки JPA
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Liquibase управляет схемой
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # 3. Настройки Liquibase
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+
+# 4. Настройки сервера (ВНЕ spring)
+server:
+  port: 8080
+
+# 5. JWT настройки (ВНЕ spring)
+app:
+  jwt:
+    secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+    expiration: 86400000  # 24 часа в миллисекундах
+
+# 6. Настройки Swagger/OpenAPI (ВНЕ spring)
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    operations-sorter: method
+    tags-sorter: alpha
+    try-it-out-enabled: true
+    filter: true
+    display-request-duration: true
+  show-actuator: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+
+# 7. Логирование (опционально)
+logging:
+  level:
+    com.example.bankcards: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
