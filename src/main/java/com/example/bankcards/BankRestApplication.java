@@ -24,7 +24,7 @@ public class BankRestApplication {
                 User admin = User.builder()
                         .username("admin")
                         .password(passwordEncoder.encode("admin123"))
-                        .role(Role.ADMIN)  // ← ВАЖНО: ADMIN, а не USER
+                        .role(Role.ADMIN)
                         .active(true)
                         .build();
                 userRepository.save(admin);

@@ -28,7 +28,7 @@ spring:
 
 # 4. Настройки сервера (ВНЕ spring)
 server:
-  port: 8080
+  port: 8081
 
 # 5. JWT настройки (ВНЕ spring)
 app:
@@ -49,6 +49,10 @@ springdoc:
     try-it-out-enabled: true
     filter: true
     display-request-duration: true
+     # кнопка Authorize
+    oauth:
+      client-id: swagger-ui
+    persist-authorization: true
   show-actuator: true
   default-consumes-media-type: application/json
   default-produces-media-type: application/json
