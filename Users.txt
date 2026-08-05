@@ -1,0 +1,12 @@
+тестовые пользователи
+{
+  "username": "User",
+  "password": "user39pas",
+  "role": "USER"
+}
+
+{
+  "username": "Admin",
+  "password": "pas84admin",
+  "role": "ADMIN"
+}

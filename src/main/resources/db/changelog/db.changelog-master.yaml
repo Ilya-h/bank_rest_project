@@ -1,3 +1,6 @@
+eyJhbGciOiJIUzI1NiJ9:
+  eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwic3ViIjoiSm9obiBEb2UiLCJpYXQiOjE3ODU3MTcyNDUsImV4cCI6MTc4NTgwMzY0NX0:
+    Of2zlRBI639PeNN8w6rhjcokbX02O1MhEqeqMY-8Vno:
 databaseChangeLog:
   - include:
       file: db/changelog/01-create-users-table.yaml

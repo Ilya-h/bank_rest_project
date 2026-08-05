@@ -20,6 +20,6 @@ public class AuthRequest {
     @Schema(description = "Пароль", example = "securePass123")
     private String password;
 
-    @Schema(description = "Роль пользователя", example = "USER")
-    private Role role = Role.USER;  // По умолчанию USER
+    @Schema(description = "Роль пользователя", example = "USER", allowableValues = {"USER", "ADMIN"})
+    private Role role = Role.USER;
 }

@@ -52,6 +52,9 @@ public class JwtUtils {
     }
 
     public String generateToken(UserDetails userDetails) {
+        if (userDetails == null || userDetails.getUsername() == null) {
+            throw new IllegalArgumentException("UserDetails or username cannot be null");
+        }
         Map<String, Object> claims = new HashMap<>();
         claims.put("roles", userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
@@ -70,8 +73,13 @@ public class JwtUtils {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        try {
+            final String username = extractUsername(token);
+            return (username.equals(userDetails.getUsername())
+                    && !isTokenExpired(token));
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private Key getSignKey() {

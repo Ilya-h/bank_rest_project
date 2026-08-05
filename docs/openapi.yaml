@@ -1,1 +1,56 @@
 # Здесь будет OpenAPI описание всех доступных эндпоинтов и моделей данных.
+openapi: 3.0.3
+info:
+  title: Bank Cards API
+  description: |
+    ## 🚀 Система управления банковскими картами
+    
+    REST API для управления банковскими картами с JWT-аутентификацией.
+    
+    ### Возможности:
+    - 🔐 Аутентификация и авторизация (JWT)
+    - 💳 Создание и управление картами
+    - 📋 Просмотр карт с пагинацией и фильтрацией
+    - 💸 Переводы между своими картами
+    - 👑 Ролевой доступ (ADMIN / USER)
+    
+    ### Роли:
+    - **ADMIN**: Полный доступ к управлению картами и пользователями
+    - **USER**: Доступ только к своим картам и переводам
+    
+    ### Безопасность:
+    - Все эндпоинты (кроме `/api/auth/**`) требуют JWT-токен
+    - Токен передается в заголовке: `Authorization: Bearer <token>`
+    - Номера карт шифруются в БД и маскируются в ответах
+  version: 1.0.0
+  contact:
+    name: Developer Team
+    email: support@bankapi.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: http://localhost:8080
+    description: Development server
+  - url: http://localhost:8880
+    description: Development server (alternative port)
+  - url: https://api.bankapp.com
+    description: Production server
+
+tags:
+  - name: Authentication
+    description: 🔐 Аутентификация и регистрация пользователей
+  - name: Card Management
+    description: 💳 Управление банковскими картами
+  - name: User Management
+    description: 👤 Управление пользователями (только ADMIN)
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        Введите JWT-токен в формате:
